@@ -17,7 +17,7 @@
 		<Exec Command="node --version" ContinueOnError="true">
 			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
 		</Exec>
-		<Error Condition="'$(ErrorCode)' != '0'" Text="Debe instalar Node.js para compilar el proyecto, no será necesario en producción. https://nodejs.org/" />
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build project (but not for production enviroment). https://nodejs.org/" />
 	</Target>
 
     <Target Name="DebugEnsureNpm" AfterTargets="DebugEnsureNodeEnv">
@@ -30,7 +30,7 @@
 
     <Target Name="EnsureNodeModulesInstalled" BeforeTargets="Build" Inputs="package.json" Outputs="packages-lock.json">
 		<!-- Build Target: Restore NPM packages using npm -->
-		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Message Importance="high" Text="Restoring dependencies in $(SpaRoot) using 'npm'. This may take several minutes..." />
 		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
 	</Target>
 
