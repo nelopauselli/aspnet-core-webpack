@@ -5,4 +5,53 @@
     <RootNamespace>AspNetCoreSpa</RootNamespace>
   </PropertyGroup>
 
+    <PropertyGroup>
+		<!-- Typescript/Javascript Client Configuration -->
+		<SpaRoot>app\</SpaRoot>
+		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+	</PropertyGroup>
+
+    <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build">
+		<!-- Build Target:  Ensure Node.js is installed -->
+		<Message Importance="high" Text="Checking node version" />
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Debe instalar Node.js para compilar el proyecto, no será necesario en producción. https://nodejs.org/" />
+	</Target>
+
+    <Target Name="DebugEnsureNpm" AfterTargets="DebugEnsureNodeEnv">
+		<!-- Build Target:  Ensure Node.js is installed -->
+        <Message Importance="high" Text="Checking npm version" />
+        <Exec Command="npm --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+	</Target>
+
+    <Target Name="EnsureNodeModulesInstalled" BeforeTargets="Build" Inputs="package.json" Outputs="packages-lock.json">
+		<!-- Build Target: Restore NPM packages using npm -->
+		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+	</Target>
+
+    <Target Name="RunWebpack" AfterTargets="EnsureNodeModulesInstalled">
+		<!-- Build Target: Restore NPM packages using npm -->
+		<Message Importance="high" Text="Running npm build..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+	</Target>
+
+    <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+		<!-- Build Target: Run webpack dist build -->
+		<Message Importance="high" Text="Running npm build..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run publish" />
+
+		<!-- Include the newly-built files in the publish output -->
+		<ItemGroup>
+			<DistFiles Include="$(SpaRoot)dist\**" />
+			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+				<RelativePath>%(DistFiles.Identity)</RelativePath>
+				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			</ResolvedFileToPublish>
+		</ItemGroup>
+	</Target>
 </Project>
