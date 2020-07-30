@@ -1,0 +1,24 @@
+{
+    "name": "aspnet-core-spa",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --config webpack.config.js",
+        "publish": "webpack --mode='production'"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nelopauselli/aspnet-core-spa.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nelopauselli/aspnet-core-spa/issues"
+    },
+    "homepage": "https://github.com/nelopauselli/aspnet-core-spa#readme",
+    "devDependencies": {
+        "webpack": "^4.44.1",
+        "webpack-cli": "^3.3.12"
+    }
+}
