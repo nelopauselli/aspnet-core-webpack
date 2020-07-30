@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>aspnet_core_spa</RootNamespace>
+    <RootNamespace>AspNetCoreSpa</RootNamespace>
   </PropertyGroup>
 
 </Project>
