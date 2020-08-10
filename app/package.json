@@ -1,5 +1,5 @@
 {
-    "name": "aspnet-core-spa",
+    "name": "aspnet-core-webpack",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
@@ -9,14 +9,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/nelopauselli/aspnet-core-spa.git"
+        "url": "git+https://github.com/nelopauselli/aspnet-core-webpack.git"
     },
     "author": "",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/nelopauselli/aspnet-core-spa/issues"
+        "url": "https://github.com/nelopauselli/aspnet-core-webpack/issues"
     },
-    "homepage": "https://github.com/nelopauselli/aspnet-core-spa#readme",
+    "homepage": "https://github.com/nelopauselli/aspnet-core-webpack#readme",
     "devDependencies": {
         "@babel/core": "^7.11.0",
         "@babel/preset-env": "^7.11.0",
